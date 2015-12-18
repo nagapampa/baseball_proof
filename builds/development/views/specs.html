@@ -1,0 +1,115 @@
+<h1>{{configValues.product.catalogEntryView[0].shortDescription}}</h2>
+
+<form name="frmSpecs"
+    ng-submit="addToCart()" novalidate>
+
+    <section class="itemSpecs">
+
+	    <h2>Select Customizations</h2>
+
+	    Shaft Type: <select name="shaftType" ng-model="model.shaftType" ng-required="true">
+	      <option ng-repeat="attribute in configValues.shaftTypeValues" value="{{attribute}}" ng-selected="{{attribute == model.shaftType}}">{{attribute.value}}</option>
+		</select>
+		
+	    <p 
+	      ng-show="frmSpecs.shaftType.$invalid && frmSpecs.shaftType.$touched">
+	      Shaft type is a required field</p>
+
+	    <br/>
+
+	    Shaft Flex: <select name="shaftFlex" ng-model="model.shaftFlex" ng-required="true">
+	      <option ng-repeat="attribute in configValues.shaftFlexValues" value="{{attribute}}" ng-selected="{{attribute == model.shaftFlex}}">{{attribute.value}}</option>
+		</select>
+		
+	    <p 
+	      ng-show="frmSpecs.shaftFlex.$invalid && frmSpecs.shaftFlex.$touched">
+	      Shaft flex is a required field</p>
+
+	    <br/>
+
+	    Lie Angle: <select name="lieAngle" ng-model="model.lieAngle" ng-required="true">
+	      <option ng-repeat="attribute in configValues.lieAngleValues" value="{{attribute}}" ng-selected="{{attribute == model.lieAngle}}">{{attribute.value}}</option>
+		</select>
+		
+	    <p 
+	      ng-show="frmSpecs.lieAngle.$invalid && frmSpecs.lieAngle.$touched">
+	      Lie Angle is a required field</p>
+
+	    <br/>
+
+	    Shaft Length: <select name="shaftLength" ng-model="model.shaftLength" ng-required="true">
+	      <option ng-repeat="attribute in configValues.shaftLengthValues" value="{{attribute}}" ng-selected="{{attribute == model.shaftLength}}">{{attribute.value}}</option>
+		</select>
+		
+	    <p 
+	      ng-show="frmSpecs.shaftLength.$invalid && frmSpecs.shaftLength.$touched">
+	      Shaft Length is a required field</p>
+
+	    <br/>
+
+	    Grip: <select name="gripType" ng-model="model.gripType" ng-required="true">
+	      <option ng-repeat="attribute in configValues.gripValues" value="{{attribute}}" ng-selected="{{attribute == model.gripType}}">{{attribute.value}}</option>
+		</select>
+		
+	    <p 
+	      ng-show="frmSpecs.grip.$invalid && frmSpecs.grip.$touched">
+	      Grip is a required field</p>
+
+	     <br/>
+
+	     Grip Size: <select name="gripSize" ng-model="model.gripSize" ng-required="true">
+	      <option ng-repeat="attribute in configValues.gripSizeValues" value="{{attribute}}" ng-selected="{{attribute == model.gripSize}}">{{attribute.value}}</option>
+		</select>
+		
+	    <p 
+	      ng-show="frmSpecs.gripSize.$invalid && frmSpecs.gripSize.$touched">
+	      Grip Size is a required field</p>
+
+	     <br/>
+
+	    Clubs:
+	    <input type="hidden" ng-model="hiddenClubs" ng-required="true"/>
+	    <label ng-repeat="attribute in configValues.clubsValues">
+	        <input type="checkbox" ng-model="model.clubs[attribute.value]" value="{{attribute}}" ng-change="parseClubComponentsForDisplay()"> {{attribute.value}} 
+	    </label>
+
+	    <br/>
+
+	    Dexterity:
+	    <input type="radio" ng-model="model.dexterity" value="right">Right
+	    <input type="radio" ng-model="model.dexterity" value="left">Left
+
+    	<br/>
+
+    	Comments:
+    	<textarea ng-model="item.comments"></textarea>
+
+	</section>
+
+	<hr>
+
+    <section class="itemTotal">
+    	<h2>Club Specifications and Cost</h2>
+    	<ul>
+    		<li>Shaft Type: {{findAttribute(model.shaftType).value}} {{findAttribute(model.shaftType).field3}}</li>
+    		<li>Shaft Flex: {{findAttribute(model.shaftFlex).value}} {{findAttribute(model.shaftFlex).field3}}</li>
+    		<li>Lie Angle: {{findAttribute(model.lieAngle).value}} {{findAttribute(model.lieAngle).field3}}</li>
+    		<li>Shaft Length: {{findAttribute(model.shaftLength).value}} {{findAttribute(model.shaftLength).field3}}</li>
+    		<li>Grip: {{findAttribute(model.gripType).value}} {{findAttribute(model.gripType).field3}}</li>
+    		<li>Grip Size: {{findAttribute(model.gripSize).value}} {{findAttribute(model.gripSize).field3}}</li>
+    		<li>Clubs: {{model.clubs}} {{findAttribute(model.clubs).field3}}</li>
+    		<li>Dexterity: {{model.dexterity}}</li>
+    	</ul>
+    	Base Club {{configValues.product.catalogEntryView[0].price[1].value}}
+    	<br/>
+    	Total Options {{findAttribute(model.shaftType).field3 -- findAttribute(model.shaftFlex).field3 -- findAttribute(model.lieAngle).field3 -- findAttribute(model.shaftLength).field3 -- findAttribute(model.gripType).field3 -- findAttribute(model.gripSize).field3}}
+    	<br/>
+    	Total with Adjustments {{findAttribute(model.shaftType).field3 -- findAttribute(model.shaftFlex).field3 -- findAttribute(model.lieAngle).field3 -- findAttribute(model.shaftLength).field3 -- findAttribute(model.gripType).field3 -- findAttribute(model.gripSize).field3 -- configValues.product.catalogEntryView[0].price[1].value}}
+    </section>
+
+	<button type="submit" class="btn"
+  		ng-disabled="frmSpecs.$invalid">Add to Cart</button>
+</form>	
+
+<h2>Custom club orders are placed directly with the manufacturer.  Please allow approximately 3-4 weeks for delivery.</h2>
+<h3>Cancellations or changes must be made within 24 hours of placing your order by emailing <a href="mailto:customclubs@tgw.com">customclubs@tgw.com</a>.  After 24 hours, the order cannot be modified or canceled.</h3>

@@ -1,0 +1,25 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Baseball Configurator</title>
+  <meta name="viewport" content="width=device-width, user-scalable=no">
+
+  <link rel="stylesheet" type="text/css" href="css/style.css">
+
+  <script src="js/lib/angular/angular.min.js"></script>
+  <script src="js/lib/angular/angular-route.min.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+
+  <script src="js/appBaseball.js"></script>
+  <script src="js/controllers/baseballController.js"></script>
+
+</head>
+<body>
+	<div ng-app="baseballConfigurator">
+		<div ng-controller="BaseballCtrl">
+      Message from Controller: {{message}}
+    </div>
+	</div>
+</body>
+</html>
