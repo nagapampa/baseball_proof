@@ -8,7 +8,7 @@
   <link rel="stylesheet" type="text/css" href="css/style.css">
 
   <script src="js/lib/angular/angular.min.js"></script>
-  <script src="js/lib/angular/angular-route.min.js"></script>
+  <script src="js/lib/angular/angular-animate.min.js"></script>
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
 
   <script src="js/appBaseball.js"></script>
@@ -16,9 +16,27 @@
 
 </head>
 <body>
-	<div ng-app="baseballConfigurator">
-		<div ng-controller="BaseballCtrl">
-      Message from Controller: {{message}}
+  <div ng-app="baseballConfigurator">
+    <div ng-controller="BaseballCtrl">
+      Model: {{model}}
+      <div ng-repeat="step in steps">
+        <button ng-click="toggleStep($index)">{{step.title}}</button>
+        <div id="step_{{$index}}" style="display:none;">
+          <p>{{step.instruction}}</p>{{model.attribute}}
+          <div ng-if="step.type == 'select'">
+             <select ng-model="model.attribute[$index]" ng-options="value for value in step.values" ng-required="step.required"></select>
+          </div>
+          <div ng-if="step.type == 'color'">
+             <img ng-repeat="value in step.values" style="width:45px;height:45px;margin:3px;background:{{value}};" ng-click="selectColor(value, $parent.$index)">
+             <input ng-model="model.attribute[$index]" ng-required="step.required" ng-hide="true"/>
+          </div>
+          <div ng-if="step.type == 'review'">
+             <div ng-repeat="reviewStep in steps">
+                {{reviewStep.title}}: {{model.attribute[$index]}}
+             </div>
+          </div>
+        </div>
+      </div>
     </div>
 	</div>
 </body>
