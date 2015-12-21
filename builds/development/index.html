@@ -19,8 +19,17 @@
   <div ng-app="baseballConfigurator">
     <div ng-controller="BaseballCtrl">
       <!-- product image -->
-      <div style="float:left;background-color:#3399ff;color:#ffffff;height:350px;width:350px;">
+      <div id="productImage" style="float:left;background-color:#3399ff;color:#ffffff;height:350px;width:350px;">
         Model: {{model}}
+        <div ng-repeat="step in steps">
+          <div ng-if="step.type == 'personalization'">
+            <div ng-repeat="value in step.values track by $index">
+              <div ng-repeat="xy in value.coordinates">
+                <p style="position: absolute; top: {{xy.y}}px; left:{{xy.x}}px;">{{model.personalization.line[$index]}}</p>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
       <!-- customization options -->
       <div ng-repeat="step in steps">
@@ -43,6 +52,9 @@
               <input type="radio" ng-model="model.attribute[$parent.$index]" value="{{value.title}}" ng-change="setAttributeSelection(value.title, $parent.$index);togglePersonalization($index);">{{value.title}}
               <div id="personalization_{{$index}}" style="display:none;">
                 {{value.numberOfLines}}
+                <div ng-repeat="n in [].constructor(3) track by $index">
+                  <input type="text" ng-model="model.personalization.line[$index]">
+                </div>
               </div>
             </div>
              <input ng-model="model.attribute[$index]" ng-required="step.required" ng-hide="true"/>
@@ -50,6 +62,13 @@
           <div ng-if="step.type == 'review'">
              <div ng-repeat="reviewStep in steps | filter: { type: '!review' }">
                 {{reviewStep.title}}: {{model.attribute[$index]}}
+                <div ng-if="reviewStep.type == 'personalization'">
+                  <div ng-repeat="value in reviewStep.values track by $index">
+                    <div ng-repeat="xy in value.coordinates">
+                      <p ng-if="model.personalization.line[$index] != null">Line {{$index+1}}: {{model.personalization.line[$index]}}</p>
+                    </div>
+                  </div>
+                </div>
              </div>
           </div>
         </div>

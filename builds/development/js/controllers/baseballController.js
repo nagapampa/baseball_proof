@@ -39,17 +39,17 @@ baseballControllers.controller('BaseballCtrl', ['$scope',
             {
               "title" : "No Personalization",
               "numberOfLines" : "",
-              "coordinates" : ""
+              "coordinates" : []
             },
             {
               "title" : "One Line of Personalization",
               "numberOfLines" : "1",
-              "coordinates" : ["0_0"]
+              "coordinates" : [{"x":"50", "y":"100"}]
             },
             {
               "title" : "3 Lines of Personalization",
               "numberOfLines" : "3",
-              "coordinates" : ["0_0", "0_20", "0_40"]
+              "coordinates" : [{"x":"50", "y":"100"}, {"x":"50", "y":"120"}, {"x":"50", "y":"140"}]
             }
 
         ],
@@ -89,6 +89,12 @@ baseballControllers.controller('BaseballCtrl', ['$scope',
       $("#personalization_"+$scope.currentPersonalization).slideUp();
       $("#personalization_"+index).slideDown();      
       $scope.currentPersonalization = index;
+    }
+
+    //Return a number as an array for looping
+    $scope.getNumber = function(num) {
+      console.log("setting number "+num+" as new array "+new Array(num));
+      return new Array(num);   
     }
 
   }]);
