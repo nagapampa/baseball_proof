@@ -27,8 +27,8 @@ baseballControllers.controller('BaseballCtrl', ['$scope',
       {
         "title" : "Cup",
         "instruction" : "Choose a Cup Type",
-        "type" : "other",
-        "values" : ["34 inch", "32 inch"],
+        "type" : "image",
+        "values" : ["/images/full.png", "/images/half.png", "/images/none.png"],
         "required" : "true"
       },
       {
@@ -58,11 +58,9 @@ baseballControllers.controller('BaseballCtrl', ['$scope',
       $scope.currentStep = stepNumber;
     }
 
-    //Select a color
-    $scope.selectColor = function(color, index){
-      console.log(color);
-      console.log(index);
-      $scope.model.attribute[index] = color;
+    //Set attribute user selection
+    $scope.setAttributeSelection = function(userSelection, index){
+      $scope.model.attribute[index] = userSelection;
     }
 
   }]);

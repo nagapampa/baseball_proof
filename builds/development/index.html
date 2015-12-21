@@ -27,7 +27,11 @@
              <select ng-model="model.attribute[$index]" ng-options="value for value in step.values" ng-required="step.required"></select>
           </div>
           <div ng-if="step.type == 'color'">
-             <img ng-repeat="value in step.values" style="width:45px;height:45px;margin:3px;background:{{value}};" ng-click="selectColor(value, $parent.$index)">
+             <img ng-repeat="value in step.values" style="width:45px;height:45px;margin:3px;background:{{value}};" ng-click="setAttributeSelection(value, $parent.$index)">
+             <input ng-model="model.attribute[$index]" ng-required="step.required" ng-hide="true"/>
+          </div>
+          <div ng-if="step.type == 'image'">
+             <img ng-repeat="value in step.values" ng-src="{{value}}" style="width:45px;height:45px;margin:3px;" ng-click="setAttributeSelection(value, $parent.$index)">
              <input ng-model="model.attribute[$index]" ng-required="step.required" ng-hide="true"/>
           </div>
           <div ng-if="step.type == 'review'">
