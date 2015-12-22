@@ -15,21 +15,21 @@ baseballControllers.controller('BaseballCtrl', ['$scope',
         "instruction" : "Select A Bat Length",
         "type" : "select",
         "values" : ["34 inch", "32 inch"],
-        "required" : "true"
+        "required" : true
       },
       {
         "title" : "Handle and Barrel Colors",
         "instruction" : "Choose a Barrel/Handle Color",
         "type" : "color",
         "values" : ["#FFF", "#000", "#0033cc", "#ff0000", "#00cc00", "#ffff00"],
-        "required" : "true"
+        "required" : true
       },
       {
         "title" : "Cup",
         "instruction" : "Choose a Cup Type",
         "type" : "image",
         "values" : ["/images/full.png", "/images/half.png", "/images/none.png"],
-        "required" : "true"
+        "required" : true
       },
       {
         "title" : "Personalization",
@@ -38,29 +38,26 @@ baseballControllers.controller('BaseballCtrl', ['$scope',
         "values" : [
             {
               "title" : "No Personalization",
-              "numberOfLines" : "",
               "coordinates" : []
             },
             {
               "title" : "One Line of Personalization",
-              "numberOfLines" : "1",
               "coordinates" : [{"x":"50", "y":"100"}]
             },
             {
               "title" : "3 Lines of Personalization",
-              "numberOfLines" : "3",
               "coordinates" : [{"x":"50", "y":"100"}, {"x":"50", "y":"120"}, {"x":"50", "y":"140"}]
             }
 
         ],
-        "required" : "false"
+        "required" : false
       },
       {
         "title" : "Review & Add to Cart",
         "instruction" : "Review your selections and Add to Cart",
         "type" : "review",
         "values" : [],
-        "required" : "false"
+        "required" : false
       }
     ];
     $scope.steps = steps;
@@ -77,7 +74,6 @@ baseballControllers.controller('BaseballCtrl', ['$scope',
 
     //Set attribute user selection
     $scope.setAttributeSelection = function(userSelection, index){
-      console.log("User selects "+userSelection+" for index "+index);
       $scope.model.attribute[index] = userSelection;
     }
 
@@ -89,12 +85,6 @@ baseballControllers.controller('BaseballCtrl', ['$scope',
       $("#personalization_"+$scope.currentPersonalization).slideUp();
       $("#personalization_"+index).slideDown();      
       $scope.currentPersonalization = index;
-    }
-
-    //Return a number as an array for looping
-    $scope.getNumber = function(num) {
-      console.log("setting number "+num+" as new array "+new Array(num));
-      return new Array(num);   
     }
 
   }]);
