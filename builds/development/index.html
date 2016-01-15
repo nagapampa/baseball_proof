@@ -12,16 +12,17 @@
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
 
   <script src="js/appBaseball.js"></script>
-  <script src="js/controllers/baseballController.js"></script>
+  <script src="js/controllers/controller.js"></script>
 
 </head>
 <body>
+
   <div ng-app="baseballConfigurator">
-    <div ng-controller="BaseballCtrl">
+    
+    <div ng-controller="OptionsCtrl"><!-- Start parent options controller -->
 
-      <form name="frmCustomizeBaseball" ng-submit="addToCart()" novalidate>
+      <div ng-controller="ImageCtrl"><!-- Start child image controller -->
 
-        <!-- product image -->
         <div id="productImage" style="float:left;background-color:#3399ff;color:#ffffff;height:350px;width:350px;">
           Model: {{model}}
           <div ng-repeat="step in steps">
@@ -34,9 +35,15 @@
             </div>
           </div>
         </div>
-        <!-- customization options -->
+
+      </div><!-- End child image controller -->
+
+      <form name="frmCustomizeBaseball" ng-submit="addToCart()" novalidate>
+
         <div ng-repeat="step in steps">
+
           <button ng-click="toggleStep($index)">{{step.title}}</button>
+
           <div id="step_{{$index}}" style="display:none;">
             <p>{{step.instruction}}</p>
             <div ng-if="step.type == 'select'">
@@ -76,11 +83,15 @@
                <button type="submit" class="btn" ng-disabled="frmCustomizeBaseball.$invalid">Add to Cart</button>
             </div>
           </div>
+
         </div>
 
-    </form>
+      </form>
 
-    </div>
-	</div>
+    </div><!-- End parent options controller -->
+
+
+  </div>
+	
 </body>
 </html>
