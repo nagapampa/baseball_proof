@@ -1,0 +1,106 @@
+[
+
+{
+	"facetable": false,
+	"sequence": "1.00000",
+	"storeDisplay": false,
+	"usage": "Descriptive",
+	"searchable": false,
+	"values": [{
+		"value": "Select Bat Length",
+		"sequence": "1.00000",
+		"identifier": "identifier1",
+		"field3": "",
+		"uniqueID": "7741124012283475356"
+	}, {
+		"value": "Handle & Barrel Colors",
+		"sequence": "2.00000",
+		"identifier": "identifier2",
+		"field3": "",
+		"uniqueID": "7741124012283475356"
+	}, {
+		"value": "Cup",
+		"sequence": "3.00000",
+		"identifier": "identifier3",
+		"field3": "",
+		"uniqueID": "7741124012283475356"
+	}, {
+		"value": "Personalization",
+		"sequence": "4.00000",
+		"identifier": "identifier4",
+		"field3": "",
+		"uniqueID": "7741124012283475356"
+	}],
+	"identifier": "p_tabContent",
+	"comparable": true,
+	"type": "tabs",
+	"name": "Message",
+	"displayable": true,
+	"uniqueID": "7741124012283340835"
+},
+{
+	"facetable": false,
+	"sequence": "2.1",
+	"storeDisplay": false,
+	"usage": "Descriptive",
+	"searchable": false,
+	"values": [{
+		"value": "Green",
+		"sequence": "2.00000",
+		"image1": "\/wcsstore\/CatalogAssetStore\/Attachment\/images\/swatches\/greenballinkswatch.gif",
+		"identifier": "Green",
+		"field3": "D=Y",
+		"image2path" : "green",
+		"image1path": "\/wcsstore\/CatalogAssetStore\/\/wcsstore\/CatalogAssetStore\/Attachment\/images\/swatches\/greenballinkswatch.gif",
+		"uniqueID": "7741124012283475348"
+	}, {
+		"value": "Blue",
+		"sequence": "1.00000",
+		"image1": "\/wcsstore\/CatalogAssetStore\/Attachment\/images\/swatches\/blueballinkswatch.gif",
+		"identifier": "Blue",
+		"field3": "D=N",
+		"image1path": "\/wcsstore\/CatalogAssetStore\/\/wcsstore\/CatalogAssetStore\/Attachment\/images\/swatches\/blueballinkswatch.gif",
+		"image2path" : "blue",
+		"uniqueID": "7741124012283475349"
+	}],
+	"identifier": "p_handleColor",
+	"comparable": true,
+	"type": "colorChoice",
+	"name": "Ink Color",
+	"displayable": true,
+	"uniqueID": "7741124012283340836"
+},
+{
+	"facetable": false,
+	"sequence": "4.1",
+	"storeDisplay": false,
+	"usage": "Descriptive",
+	"searchable": false,
+	"values": [{
+		"value": "No Personalization",
+		"sequence": "1.00000",
+		"identifier": "nopers",
+		"field3": "R=0",
+		"uniqueID": "7741124012283475356"
+	},{
+		"value": "One Line of Personalization",
+		"sequence": "2.00000",
+		"identifier": "onepers",
+		"field3": "R=1",
+		"uniqueID": "7741124012283475356"
+	},{
+		"value": "Three Lines of Personalization",
+		"sequence": "3.00000",
+		"identifier": "threepers",
+		"field3": "R=3",
+		"uniqueID": "7741124012283475356"
+	}],
+	"identifier": "p_engravingMessage",
+	"comparable": true,
+	"type": "engraving",
+	"name": "Message",
+	"displayable": true,
+	"uniqueID": "7741124012283340835"
+}
+
+]

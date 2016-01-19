@@ -2,11 +2,80 @@
 
 var baseballControllers = angular.module('baseballControllers', []);
 
-baseballControllers.controller('OptionsCtrl', ['$scope',
+baseballControllers.controller('OptionsCtrl', ['$scope', '$http',
   
-  function($scope) {
+  function($scope, $http) {
 
     $scope.model = {"attribute":{"":""}};
+
+    //get the data from the JSON
+    $http.get('/js/data.json').success(function(data) {
+      $scope.jsonData = data;
+      
+      //retrieve tabs from JSON
+      var tabs = [];
+      angular.forEach(data, function(value, key) {
+        if(value.identifier === 'p_tabContent'){
+          //load tabs
+          angular.forEach(value.values, function(tabContent, tabContentKey) {
+            tabIndex = parseInt(tabContent.sequence)-1; //zero based index
+
+            var tabObject = {};
+            tabObject.value = tabContent.value;
+            tabObject.sequence = tabContent.sequence;
+            tabObject.identifier = tabContent.identifier;
+            tabObject.field3 = tabContent.field3;
+            tabObject.uniqueID = tabContent.uniqueID;
+
+            tabs[tabIndex] = tabObject;
+          });
+        }
+        
+      });
+
+      //retrieve question and associate to tabs
+      angular.forEach(data, function(value, key) {
+        if(value.identifier != 'p_tabContent'){
+          questionIndex = parseInt(value.sequence)-1; //zero based index
+
+          var questionObject = {};
+          questionObject.identifier = value.identifier;
+          questionObject.name = value.name;
+          questionObject.type = value.type;
+          questionObject.uniqueID = value.uniqueID;
+          questionObject.sequence = value.sequence;
+
+          //load options
+          var options = [];
+          angular.forEach(value.values, function(optionContent, optionContentKey) {
+            optionIndex = parseInt(optionContent.sequence)-1; //zero based index
+
+            var optionObject = {};
+            optionObject.value = optionContent.value;
+            optionObject.sequence = optionContent.sequence;
+            optionObject.identifier = optionContent.identifier;
+            optionObject.field3 = optionContent.field3;
+            optionObject.uniqueID = optionContent.uniqueID;
+            optionObject.image1 = optionContent.image1;
+            optionObject.image1path = optionContent.image1path;
+            optionObject.image2path = optionContent.image2path;
+
+            options[optionIndex] = optionObject;
+          });
+
+          //add options to question
+          questionObject.options = options;
+
+          //add question to tab
+          tabs[questionIndex].questions = questionObject;
+
+        }
+        
+      });
+
+      $scope.tabs = tabs;
+
+    });
 
     // Set the STEPS
     var steps = [
